@@ -1,29 +1,31 @@
-# 1. Import pandas and assign it the alias "pd"
+# Import pandas and assign it the alias "pd"
 import pandas as pd
 
-# 2. Load the dataset using a relative path
+# Load order data from CSV
 df = pd.read_csv("data/orders.csv")
 
-# 3. Display the first few rows
+# Inspect the initial DataFrame
 print(df.head())
-
-# 4. Display the total numbers of rows and columns
+print(df)
 print(df.shape)
-
-# 5. Display the names of all columns
 print(df.columns)
-
-# 6. Display the data type of each column
 print(df.dtypes)
-
-# 7. Count total missing (empty) values per column
 print(df.isnull().sum())
 
-
+# Standardize city names
 df["city"] = df["city"].str.title()
 
+# Verify city name transformation
 print(df["city"])
 
+# Clean and standardize status values
 df["status"] = df["status"].str.strip().str.title()
 
+# Verify status transformation
 print(df["status"])
+
+# Check duplicate order entries
+print(df[df["order_id"] == "ORD-003"])
+
+# Check the duplicate rows in the dataset
+print(df.duplicated())
